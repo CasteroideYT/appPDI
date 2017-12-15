@@ -1,24 +1,23 @@
 <resources>
     <string name="app_name">App PDI</string>
-
-    <!-- Strings related to login -->
-    <string name="prompt_email">RUT</string>
-    <string name="prompt_password">Contraseña</string>
+    <!-- Strings relacionado al login -->
+    <string name="rut">RUT</string>
+    <string name="password">Contraseña</string>
     <string name="action_sign_in">Iniciar Sesión</string>
     <string name="action_sign_in_short">Iniciar Sesión</string>
-    <string name="error_invalid_email">This email address is invalid</string>
-    <string name="error_invalid_password">This password is too short</string>
-    <string name="error_incorrect_password">This password is incorrect</string>
-    <string name="error_field_required">This field is required</string>
-    <string name="permission_rationale">"Contacts permissions are needed for providing email
-        completions."
-    </string>
-    <string name="title_activity_main">MainActivity</string>
-
+    <string name="error_invalid_email">El rut es incorrecto</string>
+    <string name="error_invalid_password">La contraseña es muy corta</string>
+    <string name="error_incorrect_password">La contraseña es incorrecta</string>
+    <string name="error_field_required">Este campo es requetido</string>
+    <string name="title_activity_main">PDI Chile</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-
-    <string name="action_settings">Settings</string>
-    <string name="title_activity_test002">test002</string>
-    <string name="title_activity_salida">SalidaActivity</string>
+    <string name="title_activity_salida">Registro de salida</string>
+    <string name="title_activity_llegada">Registro de llegada</string>
+    <!-- Mensaje bienvenida %1$s = cargo %2$s = Apellido -->
+    <string name="mensajeBienvenida">Bienvenido %1$s %2$S</string>
+    <string name="deseahacer">Que desea hacer</string>
+    <string name="registrarSalida">Registrar salida</string>
+    <string name="registrarLlegada">Registrar llegada</string>
+    <string name="sigla">Ingrese Sigla</string>
 </resources>

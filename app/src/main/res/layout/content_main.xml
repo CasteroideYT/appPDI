@@ -25,12 +25,12 @@
         android:layout_below="@+id/imv_Logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Bienvenido Sgto Soto"/>
+        android:text="@string/mensajeBienvenida"/>
     <TextView
         android:id="@+id/txv_QueHacer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Que desea hacer"
+        android:text="@string/deseahacer"
         android:layout_below="@+id/txv_Bienvenida"
         android:layout_centerHorizontal="true"/>
     <Button
@@ -39,7 +39,7 @@
         android:layout_height="wrap_content"
         android:padding="5dp"
         android:background="@color/colorPrimaryDark"
-        android:text="Registrar salida"
+        android:text="@string/registrarSalida"
         android:layout_margin="5dp"
         android:textColor="@color/blanco"
         android:layout_below="@+id/txv_QueHacer"
@@ -51,7 +51,7 @@
         android:padding="5dp"
         android:layout_margin="5dp"
         android:background="@color/colorPrimaryDark"
-        android:text="Registrar llegada"
+        android:text="@string/registrarLlegada"
         android:textColor="@color/blanco"
         android:layout_below="@+id/btn_Salida"
         android:layout_centerHorizontal="true"/>

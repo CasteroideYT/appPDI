@@ -7,11 +7,11 @@
     <!-- TODO añadir Strings -->
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
+            android:id="@+id/nav_salida"
             android:icon="@drawable/ic_menu_camera"
             android:title="Registrar salida" />
         <item
-            android:id="@+id/nav_gallery"
+            android:id="@+id/nav_llegada"
             android:icon="@drawable/ic_menu_gallery"
             android:title="Registrar llegada" />
     </group>
@@ -19,14 +19,13 @@
     <item android:title="">
         <menu>
             <item
-                android:id="@+id/nav_share"
+                android:id="@+id/nav_cerrar"
                 android:icon="@drawable/ic_menu_share"
                 android:title="Cerrar Sesión" />
             <item
-                android:id="@+id/nav_send"
+                android:id="@+id/nav_app"
                 android:icon="@drawable/ic_menu_send"
                 android:title="Acerda de la app" />
         </menu>
     </item>
-
 </menu>

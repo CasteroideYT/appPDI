@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="cl.ayacuraespinoza.appcontrolpdi.LlegadaActivity"
+    tools:showIn="@layout/app_bar_llegada"
+    android:padding="50dp">
+
+            <TextView
+                android:id="@+id/txv_TituloSigla"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:text="@string/sigla" />
+
+            <Spinner
+                android:id="@+id/spn_Sigla"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txv_TituloSigla"
+                android:layout_centerHorizontal="true">
+            </Spinner>
+
+            <TextView
+                android:id="@+id/txv_Odometro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/spn_Sigla"
+                android:layout_centerHorizontal="true"
+                android:layout_margin="5dp"
+                android:text="Odometro" />
+
+            <NumberPicker
+                android:id="@+id/nbp_Odometro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txv_Odometro">
+            </NumberPicker>
+
+            <TextView
+                android:id="@+id/txv_DatosSalida"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/nbp_Odometro"
+                android:layout_centerHorizontal="true"
+                android:text="Aqui va la fecha de salida"/>
+
+
+            <Button
+                android:id="@+id/btn_RegSalida"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:background="@color/colorPrimaryDark"
+                android:padding="5dp"
+                android:text="Registrar salida"
+                android:textColor="@color/blanco" />
+
+</RelativeLayout>
