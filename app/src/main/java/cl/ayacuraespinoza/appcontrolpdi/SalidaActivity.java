@@ -13,9 +13,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.NumberPicker;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class SalidaActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    String fechaSalida = "1900-01-01";
+    String horaSalida = "00:00:00";
+    String siglaCarro;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +43,13 @@ public class SalidaActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        //Trabajo del Layout content_salida.xml
+
+        setContentView(R.layout.content_salida);
+
+        vincularElementos();
+
     }
 
     @Override
@@ -70,4 +87,78 @@ public class SalidaActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+    // Vinculacion de elementos intefaz contento_activity a objetos
+    private void vincularElementos() {
+
+
+        NumberPicker letraSigla = (NumberPicker) findViewById(R.id.nbp_LetraSigla);
+        final NumberPicker primerNP = (NumberPicker) findViewById(R.id.nbp_primerDigito);
+        NumberPicker segundoNP = (NumberPicker) findViewById(R.id.nbp_segundoDigito);
+        NumberPicker tercerNP = (NumberPicker) findViewById(R.id.nbp_tercerDigito);
+        NumberPicker cuartoNP = (NumberPicker) findViewById(R.id.nbp_cuartoDigito);
+        NumberPicker odometro = (NumberPicker) findViewById(R.id.nbp_Odometro);
+        EditText edtOdomtro = (EditText) findViewById(R.id.edt_Odometro);
+        Button verificaSigla = (Button) findViewById(R.id.btn_verificarSigla);
+
+        // Establecer valores de NumberPicker
+        primerNP.setMinValue(1); primerNP.setMaxValue(9); primerNP.setWrapSelectorWheel(true);
+        segundoNP.setMinValue(0); segundoNP.setMaxValue(9); segundoNP.setWrapSelectorWheel(true);
+
+        tercerNP.setMinValue(0); tercerNP.setMaxValue(9); tercerNP.setWrapSelectorWheel(true);
+
+        cuartoNP.setMinValue(0); cuartoNP.setMaxValue(9); cuartoNP.setWrapSelectorWheel(true);
+
+        letraSigla.setMinValue(0); letraSigla.setMaxValue(3);
+        letraSigla.setDisplayedValues(new String[]{"A","C","J","F"});letraSigla.setWrapSelectorWheel(true);
+
+    }
+
+
+
+    private void consultaSigla(String sigla) {
+
+        String siglaConsultada = sigla;
+        String siglaRecibida = "";
+
+                //Creamos un objeto RequestQueue para efectuar el envío con la librería Volley
+        RequestQueue colaSolicitudVolley = Volley.newRequestQueue(this);
+        //Ruta al servicio
+        String urlServicioAPI ="http://159.203.79.251/app_dev.php/raceCarrosPoliciales/"+siglaConsultada;
+
+        //Configuración de la solicitud. Observar que se utiliza GET.
+        StringRequest cadenaSolicitud = new StringRequest(Request.Method.GET, urlServicioAPI,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String respuestaRecibida) {
+                        //En caso de éxito en la solicitud. Aquí se gestionan los datos de la respuesta.
+                        //En este caso se extrae un valor de la respuesta, convirtiendola primero a un objeto JSON.
+
+                        try {
+                            JSONObject respuestaJson = new JSONObject(respuestaRecibida);
+
+                            //txv_resultado.setText("Respuesta "+respuestaJson.getString("bar"));
+                            siglaRecibida = respuestaJson.getString("sigla");
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                //En caso de error en la solicitud
+                //txv_resultado.setText("Se ha producido un error "+error.getMessage());
+            }
+        });
+        //La solicitud se agrega a la cola y es gestionada por Volley.
+        colaSolicitudVolley.add(cadenaSolicitud);
+
+    }
+
+
+
+
+
 }
