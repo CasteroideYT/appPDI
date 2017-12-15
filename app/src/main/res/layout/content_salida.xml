@@ -4,83 +4,255 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingTop="50dp"
-    android:paddingBottom="50dp"
-    android:paddingRight="10dp"
-    android:paddingLeft="10dp"
-
-
+    android:padding="10dp"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="cl.ayacuraespinoza.appcontrolpdi.SalidaActivity"
     tools:showIn="@layout/app_bar_salida">
 
-        <TextView
-            android:id="@+id/txv_TituloSigla"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:text="Ingrese Sigla" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-        <LinearLayout
-            android:id="@+id/layout_PPU"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/txv_TituloSigla"
-            android:layout_centerHorizontal="true">
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/txv_TituloSigla"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:text="Ingrese Sigla" />
+
+            <LinearLayout
+                android:id="@+id/layout_PPU"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txv_TituloSigla"
+                android:layout_centerHorizontal="true">
+
+                <NumberPicker
+                    android:id="@+id/nbp_LetraSigla"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"></NumberPicker>
+
+                <NumberPicker
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"></NumberPicker>
+
+                <NumberPicker
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"></NumberPicker>
+
+                <NumberPicker
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"></NumberPicker>
+
+                <NumberPicker
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"></NumberPicker>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btn_verificarSigla"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/layout_PPU"
+                android:layout_centerHorizontal="true"
+                android:layout_margin="10dp"
+                android:background="@color/colorPrimaryDark"
+                android:padding="5dp"
+                android:text="Verificar"
+                android:textColor="@color/blanco" />
 
             <NumberPicker
-                android:id="@+id/nbp_LetraSigla"
+                android:id="@+id/nbp_Odometro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/btn_verificarSigla"></NumberPicker>
+
+            <Switch
+                android:id="@+id/chk_Tripulacion"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"></NumberPicker>
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/nbp_Odometro"
+                android:layout_centerHorizontal="true"
+                android:layout_margin="10dp"
+                android:text="Tripulacion" />
 
-            <NumberPicker
+            <LinearLayout
+                android:id="@+id/layout_Tripulacion"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"></NumberPicker>
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/chk_Tripulacion"
+                android:layout_centerHorizontal="true"
+                android:orientation="vertical">
 
-            <NumberPicker
+                <LinearLayout
+                    android:id="@+id/layout_Trip1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="Rut" />
+
+                    <Spinner
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"></Spinner>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layout_Trip2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="Rut" />
+
+                    <Spinner
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"></Spinner>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layout_Trip3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="Rut" />
+
+                    <Spinner
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"></Spinner>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layout_Trip4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="Rut" />
+
+                    <Spinner
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"></Spinner>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layout_Trip5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="Rut" />
+
+                    <Spinner
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"></Spinner>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layout_Trip6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="Rut" />
+
+                    <Spinner
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"></Spinner>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layout_Trip7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="Rut" />
+
+                    <Spinner
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"></Spinner>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layout_Trip8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="Rut" />
+
+                    <Spinner
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"></Spinner>
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/layout_Trip9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="Rut" />
+                    <Spinner
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"></Spinner>
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/layout_Trip10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="Rut" />
+                    <Spinner
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"></Spinner>
+                </LinearLayout>
+            </LinearLayout>
+            <Button
+                android:id="@+id/btn_RegSalida"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"></NumberPicker>
-
-            <NumberPicker
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"></NumberPicker>
-
-            <NumberPicker
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"></NumberPicker>
-        </LinearLayout>
-
-        <Button
-            android:id="@+id/btn_verificarSigla"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/layout_PPU"
-            android:layout_centerHorizontal="true"
-            android:layout_margin="10dp"
-            android:background="@color/colorPrimaryDark"
-            android:padding="5dp"
-            android:text="Verificar"
-            android:textColor="@color/blanco" />
-
-        <CheckBox
-            android:id="@+id/chk_Tripulacion"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/btn_verificarSigla"
-            android:layout_centerHorizontal="true"
-            android:layout_margin="10dp"
-            android:text="Tripulacion" />
-
-        <Button
-            android:id="@+id/btn_RegSalida"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:background="@color/colorPrimaryDark"
-            android:padding="5dp"
-            android:text="Registrar salida"
-            android:textColor="@color/blanco" />
-
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/layout_Tripulacion"
+                android:layout_centerHorizontal="true"
+                android:background="@color/colorPrimaryDark"
+                android:padding="5dp"
+                android:text="Registrar salida"
+                android:textColor="@color/blanco" />
+        </RelativeLayout>
+    </ScrollView>
 </RelativeLayout>
