@@ -23,6 +23,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -75,48 +82,51 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    private class ProcessJSON extends AsyncTask<String, Void, String> {
-        protected String doInBackground(String... strings) {
-            String stream = null;
-            String urlString = strings[0];
-            HTTPDataHandler hh = new HTTPDataHandler();
-            try {
-                stream = hh.GetHTTPData(urlString);
-                // Return the data from specified url
-                conectado = true;
-                return stream;
-            } catch (Exception e) {
-                conectado = false;
-                return null;
+    public void buscarDatos(String urlBusqueda) {
+        showProgress(true);
+        String pass = null;
+        RequestQueue colaSolicitudVolley = Volley.newRequestQueue(this);
+        //Configuración de la solicitud. Observar que se utiliza GET.
+        StringRequest cadenaSolicitud = new StringRequest(Request.Method.GET, urlBusqueda,
+                new Response.Listener<String>() {
+                    @Override
+                    public void  onResponse(String respuestaRecibida) {
+                        //En caso de éxito en la solicitud. Aquí se gestionan los datos de la respuesta.
+                        //En este caso se extrae un valor de la respuesta, convirtiendola primero a un objeto JSON.
+                        try {
+                            conectado=true;
+                                JSONObject respuestaJson = new JSONObject(respuestaRecibida);
+                                Toast.makeText(getApplicationContext(), "llegueeee", Toast.LENGTH_LONG).show();
+                                contraApi = respuestaJson.getString("pass");
+                                cargo = respuestaJson.getString("perfil");
+                            Toast.makeText(getApplicationContext(), contraApi, Toast.LENGTH_LONG).show();
+                            existe = true;
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            conectado = true;
+                            existe= false;
+
+                            Toast.makeText(getApplicationContext(), "Me crachie"+ e, Toast.LENGTH_LONG).show();
+                        }
+                        compararContrasena(contraApi);
+                        Toast.makeText(getApplicationContext(), "..."+contraApi, Toast.LENGTH_LONG).show();
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                //En caso de error en la solicitud
+                //txv_resultado.setText("Se ha producido un error "+error.getMessage());
             }
-        }
-
-        protected void onPostExecute(String stream) {
-            if (stream != null) {
-                try {
-                    // Obtenemos todos los datos HTTP medinte un objeto JSONObject
-                    JSONObject reader = new JSONObject(stream);
-                    // Obtenemos uno de los valores que necesitamos
-                    String pass = reader.getString("pass");
-                    contraApi = pass;
-                    String cargoapi = reader.getString("cargo");
-                    cargo = cargoapi;
-                    existe = true;
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                    existe = false;
-
-                }
-
-            }
-        }
+        });
+        //La solicitud se agrega a la cola y es gestionada por Volley.
+        colaSolicitudVolley.add(cadenaSolicitud);
     }
 
-    public void compararContrasena(String contrasena) {
+    public void compararContrasena(String contraApi) {
         View focusView = null;
-        showProgress(true);
-        urlApi = urlBase + rut + urlExtencion;
-        new ProcessJSON().execute(urlApi);
+
+        Toast.makeText(getApplicationContext(), contraApi+"uiop", Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), contrasena+"asdf", Toast.LENGTH_LONG).show();
         if (conectado && existe) {
             if (contraApi.equals(contrasena)) {
                 lanzar();
@@ -125,11 +135,12 @@ public class LoginActivity extends AppCompatActivity {
                 focusView = edtContrasena;
                 focusView.requestFocus();
             }
-        }else if (conectado){
-            Toast.makeText(getApplicationContext(),"No existe",Toast.LENGTH_LONG).show();
-        }else{
-            Toast.makeText(getApplicationContext(),"No conecta",Toast.LENGTH_LONG).show();
+        } else if (conectado) {
+
+        } else {
+            Toast.makeText(getApplicationContext(), contraApi, Toast.LENGTH_LONG).show();
         }
+
     }
 
     public void validarEntradas() {
@@ -157,8 +168,10 @@ public class LoginActivity extends AppCompatActivity {
         } else {
             rut = valRut;
             contrasena = valPass;
-            Toast.makeText(getApplicationContext(),contrasena,Toast.LENGTH_LONG).show();
-            compararContrasena(contrasena);
+            Toast.makeText(getApplicationContext(), contrasena, Toast.LENGTH_LONG).show();
+            urlApi = urlBase + rut + urlExtencion;
+            buscarDatos(urlApi);
+
         }
     }
 

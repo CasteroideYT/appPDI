@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://C:\Users\Ikaro\Desktop\Trabajos\AplicacionesMoviles\appPDI\AppControlPdi.iml" filepath="C:\Users\Ikaro\Desktop\Trabajos\AplicacionesMoviles\appPDI\AppControlPdi.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/appPDI.iml" filepath="$PROJECT_DIR$/appPDI.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pdichile.iml" filepath="$PROJECT_DIR$/pdichile.iml" />
     </modules>
   </component>
 </project>
