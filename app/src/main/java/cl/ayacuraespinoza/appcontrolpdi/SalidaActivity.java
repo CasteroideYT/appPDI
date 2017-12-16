@@ -1,5 +1,6 @@
 package cl.ayacuraespinoza.appcontrolpdi;
 
+import android.app.DownloadManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -16,6 +17,15 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.NumberPicker;
+import android.widget.Toast;
+
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -114,17 +124,16 @@ public class SalidaActivity extends AppCompatActivity
 
     }
 
+    String siglaConsultada;
+    int kmRegistrado;
+    String estadoCarro;
 
+    private void consultarDatos(String sigla) {
 
-    private void consultaSigla(String sigla) {
-
-        String siglaConsultada = sigla;
-        String siglaRecibida = "";
-
-                //Creamos un objeto RequestQueue para efectuar el envío con la librería Volley
+        //Creamos un objeto RequestQueue para efectuar el envío con la librería Volley
         RequestQueue colaSolicitudVolley = Volley.newRequestQueue(this);
         //Ruta al servicio
-        String urlServicioAPI ="http://159.203.79.251/app_dev.php/raceCarrosPoliciales/"+siglaConsultada;
+        String urlServicioAPI ="http://159.203.79.251/app_dev.php/raceCarrosPoliciales"+sigla;
 
         //Configuración de la solicitud. Observar que se utiliza GET.
         StringRequest cadenaSolicitud = new StringRequest(Request.Method.GET, urlServicioAPI,
@@ -137,8 +146,13 @@ public class SalidaActivity extends AppCompatActivity
                         try {
                             JSONObject respuestaJson = new JSONObject(respuestaRecibida);
 
-                            //txv_resultado.setText("Respuesta "+respuestaJson.getString("bar"));
-                            siglaRecibida = respuestaJson.getString("sigla");
+                            siglaConsultada = respuestaJson.getString("sigla");
+                            String patente = respuestaJson.getString("patente");
+                            Toast.makeText(getApplicationContext(),"La Sigla esta registrada a la patente: "+patente,Toast.LENGTH_LONG);
+                            kmRegistrado = Integer.parseInt(respuestaJson.getString("kmActual"));
+                            Toast.makeText(getApplicationContext(),"El Vehiculo registra "+kmRegistrado+" Km",Toast.LENGTH_LONG);
+                            estadoCarro = respuestaJson.getString("estado");
+
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -149,13 +163,15 @@ public class SalidaActivity extends AppCompatActivity
             @Override
             public void onErrorResponse(VolleyError error) {
                 //En caso de error en la solicitud
-                //txv_resultado.setText("Se ha producido un error "+error.getMessage());
+                Toast.makeText(getApplicationContext(),"La Sigla no esta registrada a un Vehículo",Toast.LENGTH_LONG);
             }
         });
         //La solicitud se agrega a la cola y es gestionada por Volley.
         colaSolicitudVolley.add(cadenaSolicitud);
 
     }
+
+
 
 
 
