@@ -108,7 +108,7 @@ public class SalidaActivity extends AppCompatActivity
         NumberPicker tercerNP = (NumberPicker) findViewById(R.id.nbp_tercerDigito);
         NumberPicker cuartoNP = (NumberPicker) findViewById(R.id.nbp_cuartoDigito);
         NumberPicker odometro = (NumberPicker) findViewById(R.id.nbp_Odometro);
-        EditText edtOdomtro = (EditText) findViewById(R.id.edt_Odometro);
+        
         Button verificaSigla = (Button) findViewById(R.id.btn_verificarSigla);
 
         // Establecer valores de NumberPicker

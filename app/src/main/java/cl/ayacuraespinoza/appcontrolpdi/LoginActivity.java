@@ -96,20 +96,20 @@ public class LoginActivity extends AppCompatActivity {
                         try {
                             conectado=true;
                                 JSONObject respuestaJson = new JSONObject(respuestaRecibida);
-                                Toast.makeText(getApplicationContext(), "llegueeee", Toast.LENGTH_LONG).show();
+
                                 contraApi = respuestaJson.getString("pass");
                                 cargo = respuestaJson.getString("perfil");
-                            Toast.makeText(getApplicationContext(), contraApi, Toast.LENGTH_LONG).show();
+
                             existe = true;
                         } catch (JSONException e) {
                             e.printStackTrace();
                             conectado = true;
                             existe= false;
 
-                            Toast.makeText(getApplicationContext(), "Me crachie"+ e, Toast.LENGTH_LONG).show();
+
                         }
                         compararContrasena(contraApi);
-                        Toast.makeText(getApplicationContext(), "..."+contraApi, Toast.LENGTH_LONG).show();
+
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -125,8 +125,6 @@ public class LoginActivity extends AppCompatActivity {
     public void compararContrasena(String contraApi) {
         View focusView = null;
 
-        Toast.makeText(getApplicationContext(), contraApi+"uiop", Toast.LENGTH_LONG).show();
-        Toast.makeText(getApplicationContext(), contrasena+"asdf", Toast.LENGTH_LONG).show();
         if (conectado && existe) {
             if (contraApi.equals(contrasena)) {
                 lanzar();
@@ -136,9 +134,9 @@ public class LoginActivity extends AppCompatActivity {
                 focusView.requestFocus();
             }
         } else if (conectado) {
-
+            Toast.makeText(getApplicationContext(), "NO existe el Usuario", Toast.LENGTH_LONG).show();
         } else {
-            Toast.makeText(getApplicationContext(), contraApi, Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Sin Conexion a Internet", Toast.LENGTH_LONG).show();
         }
 
     }
@@ -168,7 +166,7 @@ public class LoginActivity extends AppCompatActivity {
         } else {
             rut = valRut;
             contrasena = valPass;
-            Toast.makeText(getApplicationContext(), contrasena, Toast.LENGTH_LONG).show();
+
             urlApi = urlBase + rut + urlExtencion;
             buscarDatos(urlApi);
 

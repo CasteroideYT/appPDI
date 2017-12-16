@@ -76,13 +76,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/btn_verificarSigla"></NumberPicker>
 
-            <EditText
-                android:id="@+id/edt_Odometro"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_below="@+id/btn_verificarSigla"
-                android:digits="0,1,2,3,4,5,6,7,8,9" />
+
 
             <Switch
                 android:id="@+id/chk_Tripulacion"
